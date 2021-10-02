@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=develops_today
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=db
+      - PGDATA=/tmp
+    ports:
+      - "5432:5432"
+  api:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    entrypoint: ["/bin/sh","-c"]
+    command:
+    - |
+       python manage.py migrate
+       python manage.py seed auth --number 10
+       python manage.py runserver 0.0.0.0:80
+    volumes:
+      - .:/code
+    environment:
+      - SECRET_KEY=10fi8hw98dhfvw987erfhw-e98fjwdpe
+      - DJANGO_SETTINGS_MODULE=core.settings
+    ports:
+      - "80:80"
+    depends_on:
+      - db
