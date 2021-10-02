@@ -1,6 +1,4 @@
-from rest_framework import status, generics
-from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework import generics
 
 from post.models import Post, Comment, Like
 from post.serializer import PostSerializer, CommentSerializer, LikeSerializer
@@ -42,33 +40,19 @@ class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
 
 
-class LikeAPIView(APIView):
-    def get_object(self, like_id):
-        try:
-            return Like.objects.get(id=like_id)
-        except Like.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+class LikeList(generics.ListCreateAPIView):
+    """
+    List all posts or create a new like.
+    """
 
-    @staticmethod
-    def get(request):
-        votes = Like.objects.all()
-        serializer = LikeSerializer(votes, many=True)
+    serializer_class = LikeSerializer
+    queryset = Like.objects.all()
 
-        return Response(serializer.data)
 
-    @staticmethod
-    def post(request):
-        serializer = LikeSerializer(data=request.data)
+class LikeDetail(generics.RetrieveUpdateDestroyAPIView):
+    """
+    Retrieve, update or delete a like
+    """
 
-        if serializer.is_valid():
-            serializer.save()
-
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, pk):
-        like = self.get_object(pk)
-        like.delete()
-
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    serializer_class = LikeSerializer
+    queryset = Like.objects.all()

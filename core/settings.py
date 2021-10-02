@@ -15,7 +15,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["45.93.6.221", "reppon.live"]
+ALLOWED_HOSTS = ["45.93.6.221", "reppon.live", "www.reppon.live", "localhost"]
 
 
 # Application definition
