@@ -22,10 +22,10 @@
 
 ### Usage
 
-Database Initialization:
+Database seed dummy data:
 
 ```
-make db-init
+make db-seed
 ```
 
 To run: 

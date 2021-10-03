@@ -9,10 +9,6 @@ docker-up:
 	docker exec develops_today_api_1 bash -c "python manage.py migrate"
 	docker exec develops_today_api_1 bash -c "python manage.py seed post --number 10"
 
-.PHONY: db-init
-db-init:
-	docker-compose up -d --build
-	docker exec develops_today_api_1 bash -c "python manage.py makemigrations post"
-	docker exec develops_today_api_1 bash -c "python manage.py migrate"
+.PHONY: db-seed
+db-seed:
 	docker exec develops_today_api_1 bash -c "python manage.py seed post --number 10"
-	docker-compose down

@@ -10,7 +10,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, db_index=True)
 
     class Meta:
-        ordering = ("-date_created",)
+        ordering = ("-pk",)
 
     def count_likes(self):
         return Like.objects.filter(post=self).count()
@@ -28,7 +28,7 @@ class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
 
     class Meta:
-        ordering = ("-date_created",)
+        ordering = ("-pk",)
 
     def __str__(self):
         return f"Comment by {self.author} on {self.post.title}"
@@ -41,7 +41,7 @@ class Like(models.Model):
 
     class Meta:
         unique_together = ("author", "post")
-        ordering = ("-date_created",)
+        ordering = ("-pk",)
 
     def __str__(self):
         return self.post.title
