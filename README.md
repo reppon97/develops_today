@@ -20,8 +20,13 @@
 
 ### Usage
 
-To run:
+Database Initialization:
 
+```
+make db-init
+```
+
+To run: 
 ```
 make docker-up
 ```
