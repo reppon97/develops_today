@@ -4,7 +4,7 @@ user-seed:
 
 .PHONY: docker-up
 docker-up:
-	docker compose up --build
+	docker-compose up --build
 
 .PHONY: db-init
 db-init:
