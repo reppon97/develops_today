@@ -22,15 +22,15 @@
 
 ### Usage
 
+To run: 
+```
+make docker-up
+```
+
 Database seed dummy data:
 
 ```
 make db-seed
-```
-
-To run: 
-```
-make docker-up
 ```
 
 Code formatted with [Black](https://github.com/psf/black) and is passing [Flake8](https://gitlab.com/pycqa/flake8) linter.
