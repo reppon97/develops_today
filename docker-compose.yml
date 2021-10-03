@@ -20,7 +20,7 @@ services:
     - |
        python manage.py makemigrations post
        python manage.py migrate
-       python manage.py seed auth --number 10
+       python manage.py seed auth --number 5
        python manage.py runserver 0.0.0.0:80
     volumes:
       - .:/code
