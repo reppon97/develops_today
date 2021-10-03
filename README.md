@@ -1,11 +1,13 @@
 ### A simple CRUD API post, comment, like management web app using Django Rest Framework, PostgreSQL, docker-compose.
 
-####Stack:
+#### Stack:
 * API: Django Rest Framework
     * PostgreSQL
     * Docker
 
-###Methods
+
+### Methods
+
 
 * GET (Returns list of objects. Takes a /int:pk argument to get the detail view.)
     * /posts
